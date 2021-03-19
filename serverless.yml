@@ -1,0 +1,29 @@
+org: zhaoelton
+app: jira-apis
+service: jira-apis
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin # Load .env as environment variables
+
+package:
+  exclude:
+    - node_modules/**
+    - venv/**
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: '20201221'
+  environment:
+    DEFAULT_PROJECT: ${param:DEFAULT_PROJECT}
+
+functions:
+  hello:
+    handler: handler.get_issues
+    events:
+      - http:
+          path: /issues
+          method: get

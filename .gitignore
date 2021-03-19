@@ -1,0 +1,6 @@
+.aws-sam
+node_modules
+venv
+.env
+# Serverless directories
+.serverless
