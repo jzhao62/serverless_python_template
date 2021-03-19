@@ -6,7 +6,6 @@ frameworkVersion: '2'
 
 plugins:
   - serverless-offline
-  - serverless-dotenv-plugin # Load .env as environment variables
 
 package:
   exclude:
@@ -21,7 +20,7 @@ provider:
     DEFAULT_PROJECT: ${param:DEFAULT_PROJECT}
 
 functions:
-  hello:
+  get_issues:
     handler: handler.get_issues
     events:
       - http:
