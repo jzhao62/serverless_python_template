@@ -43,8 +43,10 @@ def get_issue_by_key(event, context):
     return {
         "statusCode": 200,
         "body": json.dumps({
+            "key": issue.key,
             "summary": issue.fields.summary,
             "description": issue.fields.description,
+            "links": len(issue.fields.issuelinks)
         })
     }
 
@@ -54,12 +56,15 @@ def get_related_issues(event, context):
     issues = jira_helper.get_related_issues(issue_key)
     ret = [];
     for issue in issues:
-        ret.append(json.dumps({
+        ret.append({
+            "key":issue.key,
             "summary": issue.fields.summary,
             "description": issue.fields.description,
-        }))
-
+            "links": len(issue.fields.issuelinks)
+        })
     return {
         "statusCode": 200,
-        "body": ret
+        "body": json.dumps({
+            "data": ret
+        })
     }

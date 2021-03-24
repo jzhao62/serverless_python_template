@@ -50,3 +50,12 @@ functions:
           path: /issue
           method: get
 
+  get_related_issues:
+    handler: handler.get_related_issues
+    events:
+        - http:
+            path: /related_issues
+            method: get
+
+
+

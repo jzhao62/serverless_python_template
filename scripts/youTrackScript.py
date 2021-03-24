@@ -1,12 +1,11 @@
 from youtrack.connection import Connection as YouTrack
 
-import os
-
-token = os.environ['YOUTRACK_TOKEN']
-
-print(token)
+from config.settings import YOUTRACK_TOKEN
 
 yt = YouTrack('https://jingyi.myjetbrains.com/youtrack',
-              token=token)
+              token=YOUTRACK_TOKEN)
 
-yt.getIssue('FEJIS-4')
+issue = yt.getIssue('FEJIS-4')
+
+print(issue)
+print(issue)

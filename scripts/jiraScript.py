@@ -24,4 +24,4 @@ for issue in issues:
         "description": issue.fields.description,
     })
 
-print(ret)
+print(json.dumps(ret))

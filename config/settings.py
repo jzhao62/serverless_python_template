@@ -7,3 +7,6 @@ DEFAULT_PROJECT = os.getenv('DEFAULT_PROJECT')
 API_TOKEN = os.getenv('API_TOKEN')
 USER_NAME = os.getenv('USER_NAME')
 SERVER = os.getenv('SERVER')
+
+
+YOUTRACK_TOKEN = os.getenv("YOUTRACK_TOKEN")
