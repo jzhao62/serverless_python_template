@@ -1,12 +1,8 @@
 import time
-import os
+import json
 from lib.jira_helper import JiraHelper
 
-DEFAULT_PROJECT = os.environ['DEFAULT_PROJECT']
-API_TOKEN = os.environ['API_TOKEN']
-USER_NAME = os.environ['USER_NAME']
-SERVER = os.environ['SERVER']
-
+from config.settings import USER_NAME, API_TOKEN, SERVER, DEFAULT_PROJECT
 
 jira = JiraHelper(USER_NAME, API_TOKEN, SERVER)
 
@@ -17,4 +13,15 @@ test_data = {
     "description": "test_description",
     "issuetype": {"name": "Bug"}
 }
-jira.create_issue(test_data)
+# jira.create_issue(test_data)
+
+
+issues = jira.get_related_issues('JTP-1')
+ret = [];
+for issue in issues:
+    ret.append({
+        "summary": issue.fields.summary,
+        "description": issue.fields.description,
+    })
+
+print(ret)

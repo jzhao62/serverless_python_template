@@ -6,6 +6,11 @@ frameworkVersion: '2'
 
 plugins:
   - serverless-offline
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
 
 package:
   exclude:
@@ -18,11 +23,30 @@ provider:
   lambdaHashingVersion: '20201221'
   environment:
     DEFAULT_PROJECT: ${param:DEFAULT_PROJECT}
+    API_TOKEN : ${param:API_TOKEN}
+    USER_NAME : ${param:USER_NAME}
+    SERVER : ${param:SERVER}
 
 functions:
-  get_issues:
-    handler: handler.get_issues
+
+  echo:
+    handler: handler.echo
     events:
       - http:
-          path: /issues
+          path: /echo
+          method: post
+
+  get_project_name:
+    handler: handler.get_project_name
+    events:
+      - http:
+          path: /project
           method: get
+
+  get_issue_by_key:
+    handler: handler.get_issue_by_key
+    events:
+      - http:
+          path: /issue
+          method: get
+
