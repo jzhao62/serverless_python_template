@@ -1,6 +1,6 @@
 org: zhaoelton
-app: jira-apis
-service: jira-apis
+app: serverless_python_template
+service: serverless_python_template
 
 frameworkVersion: '2'
 
@@ -35,27 +35,6 @@ functions:
       - http:
           path: /echo
           method: post
-
-  get_project_name:
-    handler: handler.get_project_name
-    events:
-      - http:
-          path: /project
-          method: get
-
-  get_issue_by_key:
-    handler: handler.get_issue_by_key
-    events:
-      - http:
-          path: /issue
-          method: get
-
-  get_related_issues:
-    handler: handler.get_related_issues
-    events:
-        - http:
-            path: /related_issues
-            method: get
 
 
 
